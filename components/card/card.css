@@ -1,5 +1,9 @@
 .card-container {
   margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
 }
 .card {
   width: 300px;
@@ -23,3 +27,18 @@
 li {
   list-style: none;
 }
+/* 
+.animateIn {
+  animation: animateIn 1s ease-out;
+}
+
+@keyframes animateIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+} */

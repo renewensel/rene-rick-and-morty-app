@@ -5,6 +5,7 @@ const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
 );
+const card = document.querySelector('[data-js="card"]');
 const searchBar = document.querySelector('[data-js="search-bar"]');
 const navigation = document.querySelector('[data-js="navigation"]');
 const prevButton = document.querySelector('[data-js="button-prev"]');
@@ -28,6 +29,9 @@ export async function fetchData() {
     if (response.ok) {
       // Success (Good Response)
       data = await response.json(); // Assign data to the external variable
+      console.log(data.results);
+      console.log(data.info.pages);
+
       data.results.forEach((character) => {
         cardContainer.insertAdjacentHTML(
           "beforeend",
@@ -39,19 +43,18 @@ export async function fetchData() {
             character.episode.length
           )
         );
-        // need to pass the arguments
-        // append new Card to cardContainer
       });
+      // card.classList.add(animateIn);
     } else {
       // Failure (Bad Response)
       console.error("Bad Response");
     }
   } catch (error) {
     // Failure (Network error, etc)
-    console.error("An Error occurred");
+    console.error("An Error occurred", error);
   }
 }
 
 // Call the function to fetch data
 await fetchData();
-console.log(data.results);
+// console.log(data.results);

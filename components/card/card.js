@@ -1,6 +1,6 @@
 export function createCharacterCard(image, name, status, type, episodes) {
   console.log("Hello from createCharacterCard function");
-  const createNewCard = `<li class="card">
+  const createNewCard = `<li class="card" data-js="card">
     <div class="card__image-container">
       <img
         class="card__image"
@@ -21,5 +21,6 @@ export function createCharacterCard(image, name, status, type, episodes) {
       </dl>
     </div>
     </li>`;
+  // createNewCard.classList.add(animateIn);
   return createNewCard;
 }
