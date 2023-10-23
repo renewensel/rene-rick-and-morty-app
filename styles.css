@@ -19,6 +19,9 @@ body {
   font-family: var(--font-family);
   color: var(--color-primary);
   padding: 20px;
+  /* background-image: url(./assets/portal-rick-and-morty.gif);
+  background-repeat: no-repeat;
+  background-size: contain; */
 }
 
 main {
@@ -29,4 +32,15 @@ main {
 
 .title {
   padding: 10px 0;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  /* background: linear-gradient(
+    -135deg,
+    rgb(255, 102, 102) 0%,
+    rgb(206, 158, 255) 100% */
+  /* ); */
 }
