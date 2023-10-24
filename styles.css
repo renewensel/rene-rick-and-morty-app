@@ -44,3 +44,7 @@ main {
     rgb(206, 158, 255) 100% */
   /* ); */
 }
+
+.hidden {
+  visibility: hidden;
+}

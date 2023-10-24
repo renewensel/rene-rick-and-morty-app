@@ -35,20 +35,12 @@ export async function fetchData() {
       data = await response.json(); // Assign data to the external variable
       console.log(data.results);
       console.log(maxPage);
+      createSomeCard();
+      if (page <= 1) {
+        prevButton.classList.add("hidden");
+        console.log("hide");
+      }
       pagination.textContent = `${page} / ${maxPage}`;
-      data.results.forEach((character) => {
-        cardContainer.insertAdjacentHTML(
-          "beforeend",
-          createCharacterCard(
-            character.image,
-            character.name,
-            character.type,
-            character.status,
-            character.episode.length
-          )
-        );
-      });
-      // card.classList.add(animateIn);
     } else {
       // Failure (Bad Response)
       console.error("Bad Response");
@@ -63,11 +55,43 @@ export async function fetchData() {
 await fetchData();
 // console.log(data.results);
 
+// function pagination
+
+// function create a card
+function createSomeCard() {
+  console.log("Hello from createSomeCard Function!!!");
+  data.results.forEach((character) => {
+    cardContainer.insertAdjacentHTML(
+      "beforeend",
+      createCharacterCard(
+        character.image,
+        character.name,
+        character.type,
+        character.status,
+        character.episode.length
+      )
+    );
+  });
+}
+
 // pagination eventlisteners
 nextButton.addEventListener("click", (customURL) => {
   console.log("clicked next");
-  page++;
-  pagination.textContent = `${page} / ${maxPage}`;
+  if (page === 42) {
+    prevButton.classList.add("hidden");
+    console.log("hide");
+    page++;
+    pagination.textContent = `${page} / ${maxPage}`;
+  } else {
+    prevButton.classList.remove("hidden");
+    page++;
+    pagination.textContent = `${page} / ${maxPage}`;
+  }
+
+  customURL = customURL + `?page=${page}`;
+  createSomeCard(customURL);
+  console.log(customURL);
+
   customURL = baseURL + `?page=${page}`;
   console.log(page);
   cardContainer.innerHTML = "";
@@ -78,8 +102,17 @@ nextButton.addEventListener("click", (customURL) => {
 
 prevButton.addEventListener("click", (customURL) => {
   console.log("clicked next");
-  page--;
-  pagination.textContent = `${page} / ${maxPage}`;
+  if (page <= 1) {
+    prevButton.classList.add("hidden");
+    console.log("hide");
+    page--;
+    pagination.textContent = `${page} / ${maxPage}`;
+  } else {
+    prevButton.classList.remove("hidden");
+    page--;
+    pagination.textContent = `${page} / ${maxPage}`;
+  }
+
   // if page is less than 0 do nothing or grey out button completly
   customURL = baseURL + `?page=${page}`;
   console.log(page);
